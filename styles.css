@@ -73,12 +73,12 @@ body {
     env(safe-area-inset-left);
 }
 
-/* Landscape = keyboard left, display right */
+/* Landscape = display left, keyboard right */
 @media (orientation: landscape) {
   .app {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
-    grid-template-areas: "keyboard display";
+    grid-template-areas: "display keyboard";
   }
 }
 
@@ -151,7 +151,7 @@ body {
 }
 
 .message.is-empty::before {
-    content: "Tap the letters on the left";
+    content: "Tap the letters on the right";
   }
 }
 
