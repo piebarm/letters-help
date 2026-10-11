@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="theme-color" content="#111111">
+  <title>Talk Board</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <h1 class="visually-hidden">Talk Board</h1>
+    <section class="display-pane" aria-labelledby="display-heading">
+      <h2 id="display-heading" class="visually-hidden">Message</h2>
+      <output id="message" class="message" aria-live="polite"></output>
+      <button type="button" id="clear" class="clear-button">Clear</button>
+    </section>
+
+    <section class="keyboard-pane" aria-labelledby="keyboard-heading">
+      <h2 id="keyboard-heading" class="visually-hidden">Keyboard</h2>
+
+      <div class="phrases" role="group" aria-label="Quick words">
+        <button type="button" class="key phrase" data-text="PAIN">Pain</button>
+        <button type="button" class="key phrase" data-text="HUNGRY">Hungry</button>
+        <button type="button" class="key phrase" data-text="THIRSTY">Thirsty</button>
+        <button type="button" class="key phrase" data-text="TIRED">Tired</button>
+      </div>
+
+      <div id="keyboard" class="keyboard" role="group" aria-label="Letters and numbers">
+        <!-- Rows are built by app.js (UK QWERTY) -->
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

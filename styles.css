@@ -1,0 +1,283 @@
+:root {
+  --bg: #111111;
+  --display-bg: #ffffff;
+  --display-fg: #000000;
+  --placeholder: #9a9a9a;
+  --key-bg: #2c2f36;
+  --key-fg: #ffffff;
+  --key-active: #4a90e2;
+  --space-bg: #3d424c;
+  --delete-bg: #5c3b3b;
+  --clear-bg: #c62828;
+  --phrase-1: #c62828;
+  --phrase-2: #ef6c00;
+  --phrase-3: #1565c0;
+  --phrase-4: #6a1b9a;
+  --gap: clamp(4px, 0.8vmin, 10px);
+  --radius: clamp(6px, 1.2vmin, 14px);
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--key-fg);
+  font-family: var(--font);
+  overflow: hidden;
+  overscroll-behavior: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Layout: portrait = display above keyboard ---------- */
+
+.app {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    "display"
+    "keyboard";
+  height: 100vh;
+  height: 100dvh;
+  padding:
+    env(safe-area-inset-top)
+    env(safe-area-inset-right)
+    env(safe-area-inset-bottom)
+    env(safe-area-inset-left);
+}
+
+/* Landscape = keyboard left, display right */
+@media (orientation: landscape) {
+  .app {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "keyboard display";
+  }
+}
+
+.display-pane,
+.keyboard-pane {
+  min-width: 0;
+  min-height: 0;
+  padding: var(--gap);
+}
+
+/* ---------- Display pane ---------- */
+
+.display-pane {
+  grid-area: display;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+.message {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--display-bg);
+  color: var(--display-fg);
+  border-radius: var(--radius);
+  font-weight: 800;
+  line-height: 1.05;
+  text-align: center;
+  white-space: pre-wrap;
+  word-break: normal;
+  overflow-wrap: normal;
+  letter-spacing: 0.02em;
+}
+
+.message-text {
+  flex: 0 0 auto;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  padding: 0 0.15em;
+}
+
+.message.is-empty {
+  justify-content: flex-start;
+}
+
+.message.is-empty::before {
+  content: "Tap the letters below";
+  display: block;
+  color: var(--placeholder);
+  font-size: clamp(18px, 4vmin, 40px);
+  font-weight: 600;
+  padding-top: 1em;
+}
+
+@media (orientation: landscape) {
+  .message-text {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  padding: 0 0.15em;
+}
+
+.message.is-empty {
+  justify-content: flex-start;
+}
+
+.message.is-empty::before {
+    content: "Tap the letters on the left";
+  }
+}
+
+.clear-button {
+  flex: 0 0 auto;
+  min-height: 56px;
+  height: 12%;
+  max-height: 110px;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--clear-bg);
+  color: #ffffff;
+  font: inherit;
+  font-size: clamp(22px, 4.5vmin, 48px);
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.clear-button:active {
+  filter: brightness(1.25);
+}
+
+/* ---------- Keyboard pane ---------- */
+
+.keyboard-pane {
+  grid-area: keyboard;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+.phrases {
+  flex: 1.3 1 0;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap);
+}
+
+.keyboard {
+  flex: 5 1 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+.key-row {
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  justify-content: center;
+  gap: var(--gap);
+}
+
+.key {
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--key-bg);
+  color: var(--key-fg);
+  font: inherit;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 80ms ease;
+}
+
+.key:active {
+  background: var(--key-active);
+}
+
+.key:focus-visible,
+.clear-button:focus-visible {
+  outline: 4px solid #ffd54f;
+  outline-offset: 2px;
+}
+
+/* Each character key is 1/10 of the row so rows stay aligned like a real keyboard */
+.key.char {
+  flex: 0 0 calc((100% - 9 * var(--gap)) / 10);
+  font-size: clamp(18px, 4.6vmin, 56px);
+}
+
+@media (orientation: landscape) {
+  .key.char {
+    font-size: clamp(18px, 3.6vmin, 52px);
+  }
+}
+
+.key.space {
+  flex: 7 1 0;
+  background: var(--space-bg);
+  font-size: clamp(16px, 3.2vmin, 36px);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.key.delete {
+  flex: 3 1 0;
+  background: var(--delete-bg);
+  font-size: clamp(22px, 5vmin, 56px);
+}
+
+.key.phrase {
+  color: #ffffff;
+  font-size: clamp(14px, 3.4vmin, 40px);
+  font-weight: 800;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+  padding: 0 0.2em;
+}
+
+@media (orientation: landscape) {
+  .key.phrase {
+    font-size: clamp(14px, 2.6vmin, 36px);
+  }
+}
+
+.phrase:nth-child(1) { background: var(--phrase-1); }
+.phrase:nth-child(2) { background: var(--phrase-2); }
+.phrase:nth-child(3) { background: var(--phrase-3); }
+.phrase:nth-child(4) { background: var(--phrase-4); }
+
+.key.phrase:active { background: var(--key-active); }
