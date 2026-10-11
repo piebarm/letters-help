@@ -13,7 +13,7 @@
   var MAX_FONT = 1000;
 
   // Taps of the same key closer together than this are treated as one tap.
-  var REPEAT_DELAY_MS = 1000;
+  var REPEAT_DELAY_MS = 500;
 
   var output = document.getElementById('message');
   var keyboard = document.getElementById('keyboard');
