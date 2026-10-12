@@ -9,10 +9,10 @@
   --space-bg: #3d424c;
   --delete-bg: #5c3b3b;
   --clear-bg: #c62828;
-  --phrase-1: #c62828;
-  --phrase-2: #2e7d32;
-  --phrase-3: #8b1a1a;
-  --phrase-4: #6a1b9a;
+  --phrase-1: #2e7d32;
+  --phrase-2: #8b1a1a;
+  --phrase-3: #6a1b9a;
+  --phrase-4: #c62828;
   --phrase-5: #d84315;
   --phrase-6: #1565c0;
   --phrase-7: #5d4037;
@@ -268,7 +268,7 @@ body {
 
 .key.phrase {
   color: #ffffff;
-  font-size: clamp(14px, 3.4vmin, 40px);
+  font-size: clamp(16px, 4.2vmin, 48px);
   font-weight: 800;
   text-transform: uppercase;
   overflow-wrap: anywhere;
@@ -277,7 +277,7 @@ body {
 
 @media (orientation: landscape) {
   .key.phrase {
-    font-size: clamp(14px, 2.6vmin, 36px);
+    font-size: clamp(16px, 3.3vmin, 44px);
   }
 }
 
