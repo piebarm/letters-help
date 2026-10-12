@@ -10,12 +10,12 @@
   --delete-bg: #5c3b3b;
   --clear-bg: #c62828;
   --phrase-1: #2e7d32;
-  --phrase-2: #8b1a1a;
+  --phrase-2: #c62828;
   --phrase-3: #6a1b9a;
-  --phrase-4: #c62828;
+  --phrase-4: #8b1a1a;
   --phrase-5: #d84315;
   --phrase-6: #1565c0;
-  --phrase-7: #5d4037;
+  --phrase-7: #c2185b;
   --phrase-8: #00838f;
   --number-bg: #4f5663;
   --gap: clamp(4px, 0.8vmin, 10px);
