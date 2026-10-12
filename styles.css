@@ -13,6 +13,11 @@
   --phrase-2: #2e7d32;
   --phrase-3: #8b1a1a;
   --phrase-4: #6a1b9a;
+  --phrase-5: #d84315;
+  --phrase-6: #1565c0;
+  --phrase-7: #5d4037;
+  --phrase-8: #00838f;
+  --number-bg: #4f5663;
   --gap: clamp(4px, 0.8vmin, 10px);
   --radius: clamp(6px, 1.2vmin, 14px);
   --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -55,12 +60,12 @@ body {
   border: 0;
 }
 
-/* ---------- Layout: portrait = display above keyboard ---------- */
+/* ---------- Layout: portrait = display (1/3) above keyboard (2/3) ---------- */
 
 .app {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr 2fr;
   grid-template-areas:
     "display"
     "keyboard";
@@ -73,10 +78,10 @@ body {
     env(safe-area-inset-left);
 }
 
-/* Landscape = display left, keyboard right */
+/* Landscape = display (1/3) left, keyboard (2/3) right */
 @media (orientation: landscape) {
   .app {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
     grid-template-rows: 1fr;
     grid-template-areas: "display keyboard";
   }
@@ -186,10 +191,11 @@ body {
 }
 
 .phrases {
-  flex: 1.3 1 0;
+  flex: 2 1 0;
   min-height: 0;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 1fr;
   gap: var(--gap);
 }
 
@@ -279,5 +285,12 @@ body {
 .phrase:nth-child(2) { background: var(--phrase-2); }
 .phrase:nth-child(3) { background: var(--phrase-3); }
 .phrase:nth-child(4) { background: var(--phrase-4); }
+.phrase:nth-child(5) { background: var(--phrase-5); }
+.phrase:nth-child(6) { background: var(--phrase-6); }
+.phrase:nth-child(7) { background: var(--phrase-7); }
+.phrase:nth-child(8) { background: var(--phrase-8); }
 
-.key.phrase:active { background: var(--key-active); }
+.key.number { background: var(--number-bg); }
+
+.key.phrase:active,
+.key.number:active { background: var(--key-active); }

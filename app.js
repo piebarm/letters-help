@@ -39,7 +39,7 @@
       var rowEl = document.createElement('div');
       rowEl.className = 'key-row';
       row.forEach(function (char) {
-        var key = makeKey(char, 'char', 'char');
+        var key = makeKey(char, /[0-9]/.test(char) ? 'char number' : 'char', 'char');
         key.dataset.text = char;
         rowEl.appendChild(key);
       });
