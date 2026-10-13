@@ -47,7 +47,7 @@
     });
 
     var controls = document.createElement('div');
-    controls.className = 'key-row';
+    controls.className = 'key-row controls-row';
     var space = makeKey('Space', 'space', 'space');
     space.setAttribute('aria-label', 'Space');
     var del = makeKey('⌫', 'delete', 'delete');
