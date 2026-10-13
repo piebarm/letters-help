@@ -240,6 +240,11 @@ body {
   outline-offset: 2px;
 }
 
+/* Space/delete row is shorter, so the letter rows get the spare height */
+.key-row.controls-row {
+  flex: 0.55 1 0;
+}
+
 /* Each character key is 1/10 of the row so rows stay aligned like a real keyboard */
 .key.char {
   flex: 0 0 calc((100% - 9 * var(--gap)) / 10);
